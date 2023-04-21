@@ -5,7 +5,7 @@ function Layout(props) {
 		<div>
 			<NavBar />
 			<main>{props.children}</main>
-			
+			{/* Footer */}
 		</div>
 	);
 }

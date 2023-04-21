@@ -11,7 +11,7 @@
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://ryan-skabelund.github.io/regex-finite-automata",
+  "homepage": "https://ryan-skabelund.github.io/regex-finite-automata/",
   "scripts": {
     "start": "react-scripts start",
     "predeploy": "npm run build",

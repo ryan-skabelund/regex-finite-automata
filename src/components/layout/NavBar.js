@@ -6,8 +6,8 @@ function NavBar() {
 			<div className={css.title}>Regex to Finite Automata</div>
 			<nav>
 				<ul>
-					<li>idk yet</li>
-					<li>idk yet too</li>
+					<li>personal website</li>
+					<li>Finite Automata to Regex</li>
 				</ul>
 			</nav>
 		</header>

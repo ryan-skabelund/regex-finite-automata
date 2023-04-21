@@ -1,0 +1,22 @@
+.title {
+	font-size: 1.25rem;
+	font-weight: 600;
+}
+
+.list li {
+	margin: 0.3rem 0 0 0;
+}
+
+.input {
+	width: calc(100% - 8px);
+	height: 1.5rem;
+	font: 1.5rem;
+	letter-spacing: 0.1rem;
+	margin-top: 1rem;
+}
+
+.actions {
+	display: flex;
+	justify-content: center;
+	margin-top: 1rem;
+}

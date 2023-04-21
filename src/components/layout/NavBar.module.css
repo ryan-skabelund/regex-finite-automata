@@ -4,13 +4,12 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background-color: #EFEFF2;
+	background-color: #efeff2;
 	padding: 0 3rem;
-	border-bottom: 2px solid #DDD;
+	border-bottom: 2px solid #ddd;
 }
 
 .title {
-	color: #444;
 	font-size: 1.5rem;
 	font-weight: 600;
 }
@@ -28,6 +27,5 @@
 }
 
 nav {
-	color: #444;
 	font-size: 1rem;
-} 
+}

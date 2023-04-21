@@ -1,0 +1,8 @@
+.partition {
+	padding: 3rem;
+	background-color: #fff;
+	border: 1px solid #ddd;
+	
+	width: calc(80% - 6rem);
+	margin: 1rem 0 0 0;
+}
