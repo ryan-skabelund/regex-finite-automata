@@ -1,17 +1,13 @@
 import css from "./MainPage.module.css";
-import InputRegex from "../components/partitions/InputRegex";
 import Partition from "../components/layout/Partition";
+import InputRegex from "../components/partitions/InputRegex";
+import FiniteAutomata from "../components/partitions/FiniteAutomata";
 
 function MainPage() {
-	function parseRegex(regex, finiteAutomataType) {
-		console.log(regex + " -> " + finiteAutomataType);
-	}
-	
 	return (
 		<div className={css.mainpage}>
-			<Partition>
-				<InputRegex parseRegex={parseRegex}/>
-			</Partition>
+			<Partition><InputRegex /></Partition>
+			<Partition><FiniteAutomata /></Partition>
 		</div>
 	);
 }

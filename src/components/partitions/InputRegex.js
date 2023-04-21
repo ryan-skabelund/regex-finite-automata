@@ -1,14 +1,20 @@
 import { useRef } from "react";
+import { useContext } from "react";
+import StateContext from "../../store/state-context";
 
 import css from "./InputRegex.module.css";
 import Button from "../ui/Button";
 
-function InputRegex(props) {
+function InputRegex() {
 	const regexInputRef = useRef();
+	const stateContext = useContext(StateContext); 
 	
 	function onClickHandler(finiteAutomataType) {
 		const inputtedRegex = regexInputRef.current.value;
-		props.parseRegex(inputtedRegex, finiteAutomataType);
+		stateContext.updateData({
+			regex: inputtedRegex,
+			finiteAutomataType: finiteAutomataType
+		});
 	}
 	
 	return (
