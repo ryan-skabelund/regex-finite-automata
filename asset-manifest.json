@@ -1,16 +1,13 @@
 {
   "files": {
-    "main.css": "/regex-finite-automata/static/css/main.073c9b0a.css",
-    "main.js": "/regex-finite-automata/static/js/main.689d3cf9.js",
-    "static/js/787.3f35bc25.chunk.js": "/regex-finite-automata/static/js/787.3f35bc25.chunk.js",
-    "static/media/logo.svg": "/regex-finite-automata/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "main.css": "/regex-finite-automata/static/css/main.dd988bf8.css",
+    "main.js": "/regex-finite-automata/static/js/main.fcb21e96.js",
     "index.html": "/regex-finite-automata/index.html",
-    "main.073c9b0a.css.map": "/regex-finite-automata/static/css/main.073c9b0a.css.map",
-    "main.689d3cf9.js.map": "/regex-finite-automata/static/js/main.689d3cf9.js.map",
-    "787.3f35bc25.chunk.js.map": "/regex-finite-automata/static/js/787.3f35bc25.chunk.js.map"
+    "main.dd988bf8.css.map": "/regex-finite-automata/static/css/main.dd988bf8.css.map",
+    "main.fcb21e96.js.map": "/regex-finite-automata/static/js/main.fcb21e96.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.689d3cf9.js"
+    "static/css/main.dd988bf8.css",
+    "static/js/main.fcb21e96.js"
   ]
 }
