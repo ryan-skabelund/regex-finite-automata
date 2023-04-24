@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/regex-finite-automata/static/css/main.c37e6c7b.css",
-    "main.js": "/regex-finite-automata/static/js/main.ccd9dbe0.js",
+    "main.css": "/regex-finite-automata/static/css/main.e88e15a7.css",
+    "main.js": "/regex-finite-automata/static/js/main.5af76bc0.js",
     "index.html": "/regex-finite-automata/index.html",
-    "main.c37e6c7b.css.map": "/regex-finite-automata/static/css/main.c37e6c7b.css.map",
-    "main.ccd9dbe0.js.map": "/regex-finite-automata/static/js/main.ccd9dbe0.js.map"
+    "main.e88e15a7.css.map": "/regex-finite-automata/static/css/main.e88e15a7.css.map",
+    "main.5af76bc0.js.map": "/regex-finite-automata/static/js/main.5af76bc0.js.map"
   },
   "entrypoints": [
-    "static/css/main.c37e6c7b.css",
-    "static/js/main.ccd9dbe0.js"
+    "static/css/main.e88e15a7.css",
+    "static/js/main.5af76bc0.js"
   ]
 }
