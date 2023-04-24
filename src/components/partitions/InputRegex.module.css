@@ -20,3 +20,9 @@
 	justify-content: center;
 	margin-top: 1rem;
 }
+
+@media (max-width: 400px) {
+	.title {
+		font-size: 1.1rem;
+	}
+}

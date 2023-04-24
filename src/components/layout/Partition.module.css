@@ -6,3 +6,10 @@
 	width: calc(80% - 6rem);
 	margin: 1rem 0 0 0;
 }
+
+@media (max-width: 400px) {
+	.partition {
+		padding: 1.5rem;
+		width: calc(90% - 3rem);
+	}
+}

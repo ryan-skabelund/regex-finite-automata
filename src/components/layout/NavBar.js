@@ -4,12 +4,12 @@ function NavBar() {
 	return (
 		<header className={css.header}>
 			<div className={css.title}>Regex to Finite Automata</div>
-			<nav>
+			{/* <nav>
 				<ul>
-					<li>personal website</li>
-					<li>Finite Automata to Regex</li>
+					<li></li>
+					<li></li>
 				</ul>
-			</nav>
+			</nav> */}
 		</header>
 	);
 }
