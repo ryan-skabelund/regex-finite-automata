@@ -39,6 +39,28 @@ class NFA {
 		this.addToAlphabet(label);
 	}
 	
+	simplifyTransitions() {
+		let newTransitions = [];
+		for (const fromState of this.states) {
+			for (const toState of this.states) {
+				let labels = [];
+				for (const transition of this.transitions) {
+					if (transition.from === fromState && transition.to === toState) {
+						labels.push(transition.label);
+					}
+				}
+				if (labels.length > 0) {
+					newTransitions.push({
+						from: fromState,
+						to: toState,
+						label: labels.sort().join(", ")
+					});
+				}
+			}
+		}
+		this.transitions = newTransitions;
+	}
+	
 	setStartState(newStartState) {
 		this.startState = newStartState;
 		this.addState(newStartState);
@@ -175,10 +197,14 @@ function createFA(type, inputRegex) {
 	}
 	
 	function createDFA() {
+		
+		/// CREATE NFA ///
+		
 		let nfa = createNFA();
 		if (nfa === null) { return nfa; }
 		
-		// Populate NFA transition table
+		/// POPULATE NFA TRANSITION TABLE ///
+		
 		let NFATransitionTable = {};
 		for (const nfaState of nfa.states) {
 			NFATransitionTable[nfaState] = {};
@@ -189,6 +215,8 @@ function createFA(type, inputRegex) {
 		for (const transition of nfa.transitions) {
 			NFATransitionTable[transition.from][transition.label].push(transition.to);
 		}
+		
+		/// CREATE DFA ALPHABET AND TRANSITIONS ///
 		
 		function epsilonExpansion(state) {
 			let transitionStates = new Set();
@@ -235,6 +263,7 @@ function createFA(type, inputRegex) {
 		
 		let initialState = epsilonExpansion(nfa.startState);
 		let statesToCheck = [initialState];
+		// Using epsilon expansion, we can find multi-state transitions and snake our way through the NFA storing the results in the process
 		while (statesToCheck.length > 0) {
 			let currentState = statesToCheck.shift();
 			for (const input of dfa.alphabet) {
@@ -259,6 +288,12 @@ function createFA(type, inputRegex) {
 				}
 			}
 		}
+		
+		/// MERGE EQUIVALENT STATES ///
+		
+		// Simplify DFA by merging equivalent states
+		// A state is considered equivalent if they have the same transition rules for all input symbols
+		// as well as if they are either both accepted states or both not accepted states
 			
 		function isAccepted(stateArrayAsString) {
 			for (const state of stateArrayAsString.split(",")) {
@@ -270,10 +305,6 @@ function createFA(type, inputRegex) {
 			}
 			return false;
 		}
-		
-		// Simplify DFA by merging equivalent states
-		// A state is considered equivalent if they have the same transition rules for all input symbols
-		// as well as if they are either both accepted states or both not accepted states
 		
 		let mergedAcceptedStates = [];
 		
@@ -310,10 +341,12 @@ function createFA(type, inputRegex) {
 			}
 		}
 		
-		// Remap states
+		/// RE-MAP STATES ///
+		
 		stateNum = 0;
 		
 		let translatedStateNameCache = {};
+		// Converts "q3,q1,q2" to "q0" for example and stores result in cache
 		function translateStateName(originalState) {
 			let modifiedOriginalState = originalState.split(",").sort().join(",");
 			if (modifiedOriginalState in translatedStateNameCache) {
@@ -324,6 +357,7 @@ function createFA(type, inputRegex) {
 			return newState;
 		}
 		
+		// Checks if a state was accepted and adds the re-mapped state to accepted states
 		function checkIfAcceptedAndAdd(stateArrayAsString) {
 			if (mergedAcceptedStates.includes(stateArrayAsString)) {
 				dfa.addAcceptState(translateStateName(stateArrayAsString));
@@ -341,7 +375,9 @@ function createFA(type, inputRegex) {
 			}
 		}
 		
+		// Set the start state
 		dfa.setStartState(translateStateName(Array.from(initialState).join(",")));
+		// Add transition table to DFA with translated names
 		for (const [fromState, inputs] of Object.entries(DFATransitionTable)) {
 			for (const [input, toState] of Object.entries(inputs)) {
 				dfa.addTransition(translateStateName(fromState), translateStateName(toState), input);
@@ -350,15 +386,30 @@ function createFA(type, inputRegex) {
 			checkIfAcceptedAndAdd(fromState);
 		}
 		
-		// Add trap state
+		/// TRAP STATE ///
+		
 		let trapState = "q" + stateNum++;
+		let statesWithTransitions = new Set();
+		// Iterate through transition table, filling in the gaps
 		for (const [fromState, inputs] of Object.entries(DFATransitionTable)) {
+			statesWithTransitions.add(translateStateName(fromState));
 			for (const alphabetElement of dfa.alphabet) {
 				if (!Object.keys(inputs).includes(alphabetElement)) {
 					dfa.addTransition(translateStateName(fromState), trapState, alphabetElement);
 				}
 			}
 		}
+		// Check states without transitions
+		for (const state of dfa.states) {
+			if (!statesWithTransitions.has(state)) {
+				for (const alphabetElement of dfa.alphabet) {
+					dfa.addTransition(state, trapState, alphabetElement);
+				}
+			}
+		}
+		
+		// Simplify transitions
+		dfa.simplifyTransitions();
 		
 		return dfa;
 	}
