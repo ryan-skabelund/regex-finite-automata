@@ -6,3 +6,9 @@
 .regex {
 	letter-spacing: 0.1rem;
 }
+
+@media (max-width: 400px) {
+	.title {
+		font-size: 1.1rem;
+	}
+}

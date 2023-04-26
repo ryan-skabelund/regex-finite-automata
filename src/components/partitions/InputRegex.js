@@ -1,9 +1,9 @@
-import { useRef } from "react";
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import StateContext from "../../store/state-context";
 
 import css from "./InputRegex.module.css";
 import Button from "../ui/Button";
+import createFA from "../modules/FiniteAutomata";
 
 function escapeHtml(string) {
 	var charMap = {
@@ -26,10 +26,11 @@ function InputRegex() {
 	const stateContext = useContext(StateContext); 
 	
 	function onClickHandler(finiteAutomataType) {
-		const inputtedRegex = regexInputRef.current.value;
-		stateContext.updateData({
-			regex: escapeHtml(inputtedRegex),
-			finiteAutomataType: finiteAutomataType
+		const inputtedRegex = escapeHtml(regexInputRef.current.value).replace(",", "");
+		stateContext.updateFiniteAutomata({
+			regex: inputtedRegex,
+			finiteAutomataType: finiteAutomataType,
+			finiteAutomata: createFA(finiteAutomataType, inputtedRegex)
 		});
 	}
 	
@@ -52,7 +53,6 @@ function InputRegex() {
 			<div className={css.actions}>
 				<Button caption="Convert to DFA" id="DFA" onClick={onClickHandler} />
 				<Button caption="Convert to NFA" id="NFA" onClick={onClickHandler} />
-				<Button caption="Convert to GNFA" id="GNFA" onClick={onClickHandler} />
 			</div>
 		</div>
 	);

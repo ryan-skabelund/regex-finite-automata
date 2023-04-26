@@ -4,7 +4,8 @@ import StateContext from "../store/state-context";
 import css from "./MainPage.module.css";
 import Partition from "../components/layout/Partition";
 import InputRegex from "../components/partitions/InputRegex";
-import FiniteAutomata from "../components/partitions/FiniteAutomata";
+import ResultingFA from "../components/partitions/ResultingFA";
+import Simulation from "../components/partitions/Simulation";
 
 function MainPage() {
 	const stateContext = useContext(StateContext); 
@@ -20,7 +21,8 @@ function MainPage() {
 	return (
 		<div className={css.mainpage}>
 			<Partition><InputRegex /></Partition>
-			<Partition><FiniteAutomata /></Partition>
+			<Partition><ResultingFA /></Partition>
+			<Partition><Simulation /></Partition>
 		</div>
 	);
 }
